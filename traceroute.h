@@ -13,17 +13,21 @@ public:
     Traceroute();
     ~Traceroute();
     void trace(QString ip);
+    QStringList* getIPList();
+
+signals:
+    void traceFinished();
 
 private:
     QProcess *tracertCmd;
     QString *traceOutput;
+    QStringList *IPList;
+    QStringList *oneLineList;
     bool *inCmdProgress;
-    QStringList IPList;
-    QStringList getIPList();
 
 private slots:
     void readTrace();
-    void traceFinished(int exitCode);
+    void extractIP(int exitCode);
 };
 
 #endif // TRACEROUTE_H

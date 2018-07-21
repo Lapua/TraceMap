@@ -18,9 +18,16 @@ Widget::Widget(QWidget *parent)
 
     traceroute = new Traceroute;
     traceroute -> trace("8.8.8.8");
+    connect(traceroute, SIGNAL(traceFinished()), this, SLOT(getTraceIPList()));
 }
 
 Widget::~Widget()
 {
 
+}
+
+void Widget::getTraceIPList()
+{
+    QStringList *sl = traceroute -> getIPList();
+    qDebug() << *sl;
 }

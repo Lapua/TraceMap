@@ -14,6 +14,9 @@ public:
 
 private:
     Traceroute *traceroute;
+
+private slots:
+    void getTraceIPList();
 };
 
 #endif // WIDGET_H

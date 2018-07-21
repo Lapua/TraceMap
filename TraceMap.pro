@@ -28,11 +28,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         widget.cpp \
-    traceroute.cpp
+    traceroute.cpp \
+    ipregion.cpp
 
 HEADERS += \
         widget.h \
-    traceroute.h
+    traceroute.h \
+    ipregion.h
 
 DISTFILES +=
 

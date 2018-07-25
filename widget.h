@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include "traceroute.h"
+#include "ipregion.h"
 #include <QWidget>
 
 class Widget : public QWidget

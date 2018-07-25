@@ -3,7 +3,7 @@
 Traceroute::Traceroute()
 {
     tracertCmd = new QProcess;
-    inCmdProgress = new bool;
+    cmdInProgress = new bool;
     traceOutput = new QString;
     IPList = new QStringList;
     oneLineList = new QStringList;
@@ -13,7 +13,7 @@ Traceroute::Traceroute()
 Traceroute::~Traceroute()
 {
     delete tracertCmd;
-    delete inCmdProgress;
+    delete cmdInProgress;
     delete traceOutput;
     delete oneLineList;
     delete IPList;
@@ -21,7 +21,7 @@ Traceroute::~Traceroute()
 
 void Traceroute::trace(QString ip)
 {
-    *inCmdProgress = false;
+    *cmdInProgress = false;
     tracertCmd -> start("traceroute -n -w 1 -q 1 " + ip);
 
     connect(tracertCmd, SIGNAL(readyReadStandardOutput()), this, SLOT(readTrace()));
@@ -35,11 +35,11 @@ QStringList* Traceroute::getIPList()
 
 void Traceroute::readTrace()
 {
-    if (*inCmdProgress) {
+    if (*cmdInProgress) {
         *traceOutput += tracertCmd -> readAllStandardOutput();
     } else {
         *traceOutput = tracertCmd -> readAllStandardOutput();
-        *inCmdProgress = true;
+        *cmdInProgress = true;
     }
 }
 

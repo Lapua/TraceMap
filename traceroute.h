@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QProcess>
+
 #include <QDebug>
 
 class Traceroute : public QObject
@@ -15,15 +16,15 @@ public:
     void trace(QString ip);
     QStringList* getIPList();
 
-signals:
-    void traceFinished();
-
 private:
     QProcess *tracertCmd;
     QString *traceOutput;
     QStringList *IPList;
     QStringList *oneLineList;
-    bool *inCmdProgress;
+    bool *cmdInProgress;
+
+signals:
+    void traceFinished();
 
 private slots:
     void readTrace();

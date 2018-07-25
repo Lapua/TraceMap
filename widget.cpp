@@ -16,9 +16,12 @@ Widget::Widget(QWidget *parent)
     lay -> addWidget(imageLabel);
     setLayout(lay);
 
-    traceroute = new Traceroute;
-    traceroute -> trace("8.8.8.8");
-    connect(traceroute, SIGNAL(traceFinished()), this, SLOT(getTraceIPList()));
+    //traceroute = new Traceroute;
+    //traceroute -> trace("8.8.8.8");
+    //connect(traceroute, SIGNAL(traceFinished()), this, SLOT(getTraceIPList()));
+
+    IPRegion *ipregion = new IPRegion;
+    ipregion -> requestGetLatLng();
 }
 
 Widget::~Widget()

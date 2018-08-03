@@ -7,7 +7,6 @@
 QT       += core gui
 QT += location
 QT += core
-QT += xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -30,14 +29,16 @@ SOURCES += \
         main.cpp \
         widget.cpp \
     traceroute.cpp \
-    ipregion.cpp
+    ipregion.cpp \
+    googlemap.cpp
 
 HEADERS += \
         widget.h \
     traceroute.h \
-    ipregion.h
+    ipregion.h \
+    getkey.h \
+    googlemap.h
 
 DISTFILES +=
 
-RESOURCES += \
-    tracemap.qrc
+RESOURCES +=

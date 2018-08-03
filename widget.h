@@ -3,7 +3,9 @@
 
 #include "traceroute.h"
 #include "ipregion.h"
+#include "googlemap.h"
 #include <QWidget>
+#include <QtWidgets>
 
 class Widget : public QWidget
 {
@@ -15,9 +17,19 @@ public:
 
 private:
     Traceroute *traceroute;
+    IPRegion *ipregion;
+    googleMap *gmap;
+    QPixmap *map;
+    QVBoxLayout *lay;
+    QLabel *mapLabel;
+    QStringList *sl;
+    QStringList *sl2;
+
 
 private slots:
     void getTraceIPList();
+    void getIPRegionList();
+    void getGMap();
 };
 
 #endif // WIDGET_H

@@ -1,27 +1,28 @@
 #include "widget.h"
-#include <QtWidgets>
 #include <QDebug>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {    
-    QLabel *label = new QLabel("alice");
+    QLabel *label = new QLabel("Traceroute MAP");
 
     QLabel *imageLabel = new QLabel();
     QPixmap mapImage = QPixmap(":/images/staticmap.png");
     imageLabel -> setPixmap(mapImage);
 
-    QVBoxLayout *lay = new QVBoxLayout;
+    lay = new QVBoxLayout;
     lay -> addWidget(label);
-    lay -> addWidget(imageLabel);
+    //lay -> addWidget(imageLabel);
     setLayout(lay);
 
-    //traceroute = new Traceroute;
-    //traceroute -> trace("8.8.8.8");
-    //connect(traceroute, SIGNAL(traceFinished()), this, SLOT(getTraceIPList()));
+    traceroute = new Traceroute;
+    traceroute -> trace("8.8.8.8");
+    connect(traceroute, SIGNAL(traceFinished()), this, SLOT(getTraceIPList()));
 
-    IPRegion *ipregion = new IPRegion;
-    ipregion -> requestGetLatLng();
+    sl = new QStringList;
+    sl2 = new QStringList;
+    gmap = new googleMap;
+    map = new QPixmap;
 }
 
 Widget::~Widget()
@@ -31,6 +32,32 @@ Widget::~Widget()
 
 void Widget::getTraceIPList()
 {
-    QStringList *sl = traceroute -> getIPList();
-    qDebug() << *sl;
+    sl = traceroute -> getIPList();
+
+    ipregion = new IPRegion;
+    ipregion -> setIPList(sl);
+    ipregion -> requestGetLatLng();
+
+    connect(ipregion, SIGNAL(locateFinished()), this, SLOT(getIPRegionList()));
+}
+
+void Widget::getIPRegionList()
+{
+    qDebug() << "getlatlng";
+    sl2 = ipregion -> getLatlngList();
+    gmap -> setLatlngList(sl2);
+
+    connect(gmap, SIGNAL(finished()), this, SLOT(getGMap()));
+}
+
+void Widget::getGMap()
+{
+    map = gmap -> getMap();
+
+    mapLabel = new QLabel;
+    mapLabel -> setPixmap(*map);
+    lay -> addWidget(mapLabel);
+    setLayout(lay);
+
+    qDebug() << "all finished";
 }

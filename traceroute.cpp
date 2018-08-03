@@ -51,7 +51,7 @@ void Traceroute::extractIP(int exitCode)
         it.replace("ms", "");
         QStringList tmpStrlist = it.split(" ", QString::SkipEmptyParts);
 
-        if (tmpStrlist.at(0).size() < 3) {
+        if (tmpStrlist.at(1) != "*") {
             IPList -> append(tmpStrlist.at(1));
         }
     }

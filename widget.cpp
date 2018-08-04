@@ -7,12 +7,9 @@ Widget::Widget(QWidget *parent)
     QLabel *label = new QLabel("Traceroute MAP");
 
     QLabel *imageLabel = new QLabel();
-    QPixmap mapImage = QPixmap(":/images/staticmap.png");
-    imageLabel -> setPixmap(mapImage);
 
     lay = new QVBoxLayout;
     lay -> addWidget(label);
-    //lay -> addWidget(imageLabel);
     setLayout(lay);
 
     traceroute = new Traceroute;

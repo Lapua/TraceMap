@@ -6,8 +6,6 @@ Widget::Widget(QWidget *parent)
 {    
     QLabel *label = new QLabel("Traceroute MAP");
 
-    QLabel *imageLabel = new QLabel();
-
     lay = new QVBoxLayout;
     lay -> addWidget(label);
     setLayout(lay);

@@ -1,4 +1,5 @@
 #include "googlemap.h"
+#include <QDebug>
 
 googleMap::googleMap(QObject *parent) : QObject(parent)
 {
@@ -25,8 +26,10 @@ void googleMap::setLatlngList(QStringList *list)
             list -> removeFirst();
         }
     }
-    *url += "&size=640x640&ey=";
+    *url += "&size=640x640&key=";
     *url += GetKey::getKey();
+
+    qDebug() << *url;
 
     manager -> get(QNetworkRequest(QUrl(*url)));
 }

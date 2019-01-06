@@ -8,6 +8,9 @@ QT       += core gui
 QT += location
 QT += core
 
+# added manual https://forum.qt.io/topic/58926/solved-xcode-7-and-qt-error/3
+QMAKE_MAC_SDK = macosx10.14
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = TraceMap
